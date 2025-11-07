@@ -13,11 +13,11 @@ stages:
 - stage: Create File
   jobs:
   - job: Create a text file
-  steps:
-   - script: echo "Hello World" > file.txt
+    steps:
+    - script: echo "Hello World" > file.txt
 
 - stage: Read the file
   jobs:
-  -job: Create the file
-  steps: 
+  - job: Create the file
+    steps: 
     - script: echo "Hello World" > file.txt
