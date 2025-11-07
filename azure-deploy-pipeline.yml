@@ -1,0 +1,39 @@
+trigger: none
+
+resources:
+  pipelines:
+    - pipeline: buildPipe
+      source: 'wdio-mocha-html'
+      trigger:
+        branches:
+          include:
+            - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+# Download HTML report artifact from Pipeline 1
+- download: buildPipe
+  artifact: html-report
+  displayName: 'Download HTML Nice Report Artifact'
+
+# List contents to verify
+- script: |
+    echo "Downloaded HTML Nice Report files:"
+    ls $(Pipeline.Workspace)/buildPipe/html-report
+  displayName: 'List Downloaded Report Files'
+
+# Copy to current working directory
+- script: |
+    cp $(Pipeline.Workspace)/buildPipe/html-report/report.html ./report.html
+    echo "Copied report.html to working directory"
+  displayName: 'Copy HTML Report'
+
+# Publish the final HTML report as a new artifact
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: './report.html'
+    ArtifactName: 'final-html-report'
+    publishLocation: 'Container'
+  displayName: 'Republish HTML Report Artifact'

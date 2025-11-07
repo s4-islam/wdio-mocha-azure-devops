@@ -1,0 +1,30 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+# Use Node.js
+- task: NodeTool@0
+  inputs:
+    versionSpec: '20.x'
+  displayName: 'Use Node.js 20'
+
+# Install dependencies
+- script: |
+    npm ci
+  displayName: 'Install dependencies'
+
+# Run WDIO tests
+- script: |
+    npx wdio run wdio.conf.js
+  displayName: 'Run WebdriverIO Tests (html-nice report)'
+
+# Publish HTML Nice report as an artifact
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'reports/html-reports'
+    ArtifactName: 'html-report'
+    publishLocation: 'Container'
+  displayName: 'Publish HTML Nice Report Artifact'
