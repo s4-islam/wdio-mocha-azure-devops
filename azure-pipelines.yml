@@ -14,12 +14,21 @@ stages:
   jobs:
   - job: Create_a_text_file
     steps:
-    - script: echo "Hello World" > file.txt
-    - publish: '${System.DefaultWorkingDirectory}' 
+    - script: mkdir files && cd files && echo "Hello World" > file.txt
+    - task: CopyFiles@2
+      displayName: 'Copy file.txt'
+      inputs:
+        contents: 'files/**'
+        targetFolder: '$(Build.ArtifactStagingDirectory)'
+
+    - publish: '$(Build.ArtifactStagingDirectory)/files'
+      displayName: 'Publish file'
+      artifact: drop
 
 - stage: ReadTheFile
   jobs:
   - job: Read_the_file
     steps: 
     - download: current
+      artifact: drop
     - script: cat file.txt
