@@ -9,11 +9,15 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- task: CreatingFile@1 
-- script: echo "Hello World" > file.txt
-  displayName: 'Creating a file with text Hello World'
+stages:
+- stage: Create File
+  jobs:
+  - job: Create a text file
+  steps:
+   - script: echo "Hello World" > file.txt
 
-- task: ReadFile@1
-- script: cat file.txt
-  displayName: 'Printing contents of file.txt'
+- stage: Read the file
+  jobs:
+  -job: Create the file
+  steps: 
+    - script: echo "Hello World" > file.txt
