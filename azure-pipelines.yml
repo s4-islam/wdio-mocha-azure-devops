@@ -10,13 +10,13 @@ pool:
   vmImage: ubuntu-latest
 
 stages:
-- stage: Create File
+- stage: CreateFile
   jobs:
   - job: Create a text file
     steps:
     - script: echo "Hello World" > file.txt
 
-- stage: Read the file
+- stage: ReadTheFile
   jobs:
   - job: Create the file
     steps: 
