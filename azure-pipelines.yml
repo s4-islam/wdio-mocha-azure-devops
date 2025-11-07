@@ -10,10 +10,10 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: Creating file 
+- task: CreatingFile@1 
 - script: echo "Hello World" > file.txt
   displayName: 'Creating a file with text Hello World'
 
-- task: Read file
+- task: ReadFile@1
 - script: cat file.txt
   displayName: 'Printing contents of file.txt'
