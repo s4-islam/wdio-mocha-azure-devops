@@ -12,12 +12,12 @@ pool:
 stages:
 - stage: CreateFile
   jobs:
-  - job: Create a text file
+  - job: Create_a_text_file
     steps:
     - script: echo "Hello World" > file.txt
 
 - stage: ReadTheFile
   jobs:
-  - job: Create the file
+  - job: Read_the_file
     steps: 
     - script: cat file.txt
