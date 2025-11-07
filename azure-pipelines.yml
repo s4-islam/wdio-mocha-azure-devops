@@ -15,7 +15,7 @@ stages:
   - job: Create_a_text_file
     steps:
     - script: echo "Hello World" > file.txt
-    - publish: '${System.DefaultWorkingDirectory}/file.txt' 
+    - publish: '${System.DefaultWorkingDirectory}' 
 
 - stage: ReadTheFile
   jobs:
