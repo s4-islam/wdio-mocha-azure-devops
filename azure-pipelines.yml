@@ -15,9 +15,11 @@ stages:
   - job: Create_a_text_file
     steps:
     - script: echo "Hello World" > file.txt
+    - publish: '${System.DefaultWorkingDirectory}/file.txt' 
 
 - stage: ReadTheFile
   jobs:
   - job: Read_the_file
     steps: 
+    - download: current
     - script: cat file.txt
