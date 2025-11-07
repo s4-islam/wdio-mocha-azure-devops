@@ -10,7 +10,8 @@ stages:
   - job: Create_a_text_file
     steps:
     - script: mkdir files && cd files && echo "Hello World" > file.txt
-    - publish: '$(Build.ArtifactStagingDirectory)/files'
+      displayName: 'Create file'
+    - publish: '$(System.DefaultWorkingDirectory)/files'
       displayName: 'Publish file'
       artifact: drop
 
