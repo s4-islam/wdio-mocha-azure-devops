@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - azure-pipelines-test
 
@@ -25,4 +20,4 @@ stages:
     steps: 
     - download: current
       artifact: drop
-    - script: cat '$(Pipeline.Workspace)/files/file.txt'
+    - script: cat '$(Pipeline.Workspace)/drop/files/file.txt'
