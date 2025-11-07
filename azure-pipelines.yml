@@ -20,4 +20,4 @@ stages:
   jobs:
   - job: Create the file
     steps: 
-    - script: echo "Hello World" > file.txt
+    - script: cat file.txt
