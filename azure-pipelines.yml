@@ -15,12 +15,6 @@ stages:
   - job: Create_a_text_file
     steps:
     - script: mkdir files && cd files && echo "Hello World" > file.txt
-    - task: CopyFiles@2
-      displayName: 'Copy file.txt'
-      inputs:
-        contents: 'files/**'
-        targetFolder: '$(Build.ArtifactStagingDirectory)'
-
     - publish: '$(Build.ArtifactStagingDirectory)/files'
       displayName: 'Publish file'
       artifact: drop
@@ -31,4 +25,4 @@ stages:
     steps: 
     - download: current
       artifact: drop
-    - script: cat '$(Pipeline.Workspace)/a/files/file.txt'
+    - script: cat '$(Pipeline.Workspace)/files/file.txt'
