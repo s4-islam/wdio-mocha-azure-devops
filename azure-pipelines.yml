@@ -31,4 +31,4 @@ stages:
     steps: 
     - download: current
       artifact: drop
-    - script: cat '$(Pipeline.Workspace)/drop/files/file.txt'
+    - script: cat '$(Pipeline.Workspace)/a/files/file.txt'
